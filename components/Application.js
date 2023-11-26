@@ -1,22 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import Game from './Game';
 import Sujets from './Sujets';
 import { useMyContext } from '../MyContext';
 
 const Application = () => {
-    const { page, updatePage } = useMyContext();
+  const { sharedVariables, updateSharedVariables } = useMyContext();
 
-    useEffect(() => {
-        updatePage("game");
-    }, []);
-
-    return (
-        <View style={{ flex: 1 }}>
-            {page === "sujets" && (<Sujets />)}
-            {page === "game" && (<Game />)}
-        </View>
-    );
+  return (
+    <View style={{ flex: 1 }}>
+      {sharedVariables.page === "sujets" && (<Sujets />)}
+      {sharedVariables.page === "game" && (<Game />)}
+    </View>
+  );
 };
 
 export default Application;

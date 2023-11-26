@@ -3,11 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useMyContext } from '../MyContext';
 
 const Footer = ({ questionRepondu, questionTotal, onActionPress }) => {
-  const { page, updatePage } = useMyContext();
+  const { sharedVariables, updateSharedVariables } = useMyContext();
 
   return (
     <View style={styles.footerContainer}>
-      {page === "game" && (
+      {sharedVariables.page === "game" && (
         <>
           <Text style={styles.footerText}>
             Questions répondues : {questionRepondu}/{questionTotal}
@@ -16,6 +16,9 @@ const Footer = ({ questionRepondu, questionTotal, onActionPress }) => {
             <Text style={styles.actionButtonText}>Suivant</Text>
           </TouchableOpacity>
         </>
+      )}
+      {sharedVariables.page === "sujets" && (
+        <Text style={styles.footerText} />
       )}
     </View>
   );

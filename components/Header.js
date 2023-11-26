@@ -3,23 +3,27 @@ import { View, Text, StyleSheet } from 'react-native';
 import { useMyContext } from '../MyContext';
 
 const Header = () => {
-  const { page, updatePage } = useMyContext();
+  const { sharedVariables, updateSharedVariables } = useMyContext();
 
   const handleReturn = () => {
-    updatePage("sujets");
+    updateSharedVariables("page", "sujets");
   };
 
   return (
     <View style={styles.headerContainer}>
-      <Text style={styles.headerTitle} onPress={handleReturn}>CP - Questionner le monde</Text>
-      {/* Ajoutez d'autres éléments du header selon vos besoins */}
+      {sharedVariables.page === "sujets" && (
+        <Text style={styles.headerTitle}>Choix du sujet</Text>
+      )}
+      {sharedVariables.page === "game" && (
+        <Text style={styles.headerTitle} onPress={handleReturn}>CP - Questionner le monde</Text>
+      )}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: '#318CE7', // Couleur de fond du header
+    backgroundColor: '#318CE7',
     padding: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -27,7 +31,7 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     fontSize: 20,
-    color: '#fff', // Couleur du texte du header
+    color: '#fff',
     fontWeight: 'bold',
   },
 });

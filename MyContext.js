@@ -3,14 +3,20 @@ import { createContext, useContext, useState } from 'react';
 const MyContext = createContext();
 
 export const MyProvider = ({ children }) => {
-  const [page, setSharedVariable] = useState('');
+  const [sharedVariables, setSharedVariables] = useState({
+    page: 'sujets', // "sujets", "game"
+    sujet: null,
+  });
 
-  const updatePage = (newValue) => {
-    setSharedVariable(newValue);
+  const updateSharedVariables = (key, value) => {
+    setSharedVariables((prevVariables) => ({
+      ...prevVariables,
+      [key]: value,
+    }));
   };
 
   return (
-    <MyContext.Provider value={{ page, updatePage }}>
+    <MyContext.Provider value={{ sharedVariables, updateSharedVariables }}>
       {children}
     </MyContext.Provider>
   );
