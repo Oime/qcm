@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
 import { getFelicitation } from '../utils';
 
 export default function Content({ questions, questionRepondu }) {
@@ -26,7 +26,7 @@ export default function Content({ questions, questionRepondu }) {
         <>
           <Text style={styles.questionText}>{questions[questionRepondu].question}</Text>
           <View style={styles.answerBtnContainer}>
-            {questions[questionRepondu].reponses.map((option) => (
+            {questions[questionRepondu].typeRep === "btn" && questions[questionRepondu].reponses.map((option) => (
               <TouchableOpacity
                 key={option}
                 style={[
@@ -39,6 +39,9 @@ export default function Content({ questions, questionRepondu }) {
                 <Text style={styles.optionText}>{option}</Text>
               </TouchableOpacity>
             ))}
+            {questions[questionRepondu].typeRep === "nbr" && (
+              <TextInput style={styles.input} onChangeText={setSelectedAnswer} value={selectedAnswer} keyboardType="numeric" />
+            )}
           </View>
           {correction && (
             <Text style={styles.correctionText}>{correction}</Text>
@@ -60,7 +63,7 @@ const styles = StyleSheet.create({
     marginTop: 23,
   },
   questionText: {
-    fontSize: 18,
+    fontSize: 23,
     marginBottom: 10,
   },
   answerBtnContainer: {
@@ -87,6 +90,15 @@ const styles = StyleSheet.create({
     fontSize: 23,
   },
   optionText: {
-    fontSize: 16,
+    fontSize: 23,
+  },
+  input: {
+    height: 40,
+    minWidth: 80,
+    margin: 12,
+    borderWidth: 1,
+    paddingHorizontal: 10,
+    paddingVertical: 4,
+    fontSize: 23,
   },
 });

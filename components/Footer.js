@@ -10,7 +10,7 @@ const Footer = ({ questionRepondu, questionTotal, onActionPress }) => {
       {sharedVariables.page === "game" && (
         <>
           <Text style={styles.footerText}>
-            Questions répondues : {questionRepondu}/{questionTotal}
+            Questions : {questionRepondu}/{questionTotal}
           </Text>
           <TouchableOpacity style={styles.actionButton} onPress={onActionPress}>
             <Text style={styles.actionButtonText}>Suivant</Text>

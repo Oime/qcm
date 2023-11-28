@@ -37,7 +37,9 @@ const Game = () => {
       <Header />
       <Content questions={questions} questionRepondu={questionRepondu}>
       </Content>
-      <Footer questionRepondu={questionRepondu} questionTotal={20} onActionPress={handleActionPress} />
+      {questions && (
+        <Footer questionRepondu={questionRepondu + 1} questionTotal={questions.length} onActionPress={handleActionPress} />
+      )}
     </View>
   );
 };
